@@ -15,5 +15,6 @@ RUN CGO_ENABLED=1 GOOS=linux go build -a -installsuffix cgo -o main .
 FROM alpine:latest
 
 COPY --from=build /app/main /app/main
+COPY /app/templates /templates
 
 CMD ["/app/main"]
