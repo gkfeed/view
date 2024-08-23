@@ -80,12 +80,8 @@ func handleRequest(c *gin.Context) {
 
 	if resp.Feed.Type == "vk" {
 		imgSrcs, _ := getImageSrcs(resp.Item.Link)
-		posterSrc := imgSrcs[0]
-		for _, src := range imgSrcs {
-			if strings.HasSuffix(src, "type=album") {
-				posterSrc = src
-			}
-		}
+		// TODO: dont use magick number
+		posterSrc := imgSrcs[3]
 		c.HTML(http.StatusOK, "vk", gin.H{
 			"feed_title": resp.Feed.Title,
 			"poster_src": posterSrc,
